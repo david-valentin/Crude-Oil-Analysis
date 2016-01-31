@@ -1,57 +1,119 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
+#Pulling the data
+opec = read.table(file.choose(), sep=",", header= T)
+usd.rub = read.table(file.choose(), sep=",", header= T)
+usd.cad = read.table(file.choose(), sep=",", header= T)
+gold.usd = read.table(file.choose(), sep=",", header= T)
 
-# C extensions
-*.so
+#Summary Statistics:
+summary(opec.oil.spikes)
+summary(usd.rub.spikes)
+summary(usd.cad.spikes)
+summary(gold.usd.spikes)
 
-# Distribution / packaging
-.Python
-env/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-*.egg-info/
-.installed.cfg
-*.egg
+#Testing Correlation Between Values:
+cor(opec$Value, usd.rub$RATE)
+cor(opec$Value, usd.cad$RATE)
+cor(opec$Value, gold.usd$Value)
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+#Testing Correlation Using Spearman Test:
+cor(opec$Value, usd.rub$RATE, method = "spearman")
+cor(opec$Value, usd.cad$RATE, method = "spearman")
+cor(opec$Value, gold.usd$Value, method = "spearman")
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
+#Testing the Significance with Correlations
+cor.test(opec$Value, usd.rub$RATE)
+cor.test(opec$Value, usd.cad$RATE)
+cor.test(opec$Value, gold.usd$Value)
 
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*,cover
+#Specifically the data sets that include 2 years
+opec_2_yr = read.table(file.choose(), sep=",", header= T)
+usd_rub_2_yr = read.table(file.choose(), sep=",", header= T)
 
-# Translations
-*.mo
-*.pot
+#Plots the Opec Data and USD/RUB Data:
+plot(opec$Value, type="l", col="red", main = "OPEC Values", xlab = "Dates", ylab= "Prices in $")
+plot(usd.rub$RATE, type="l", col="green", main = "USD/RUB Exchange Rates", xlab = "Dates", ylab= "Prices in $")
+plot(usd.cad$RATE, type="l",  col = "blue", main="USD/CAD Exchange Rates", xlab = "Dates", ylab= "Prices in $")
+plot(gold.usd$Value, type="l", col = "red", main="Gold in USD Value", xlab="Dates", ylab= "Prices in $")
 
-# Django stuff:
-*.log
+#Calculates the Frequency of which the Oil Spikes Occur 
+hist(opec.oil.spikes$oil.spikes, col = "red", xlim= 0+c(-15,15), main="Frequency of Oil Spikes", xlab= "Oil Spikes")
+curve(dnorm(x, mean=mean(opec.oil.spikes$oil.spikes, na.rm=T), sd= sd(opec.oil.spikes$oil.spikes, na.rm=T)), add=T, col="blue")
 
-# Sphinx documentation
-docs/_build/
+#Histograms 
+hist(usd.rub.spikes$rub.spikes, breaks =10, col = "blue", xlim= 0+c(min2,max2), main="Frequency of Ruble Spikes", xlab= "USD RUB")
+hist(usd.cad.spikes$cad.spikes, breaks=10, col= "red", xlim= 0+c(min3,max3), main="Frequency of Canadian Dollar Spikes", xlab= "USD CAD")
+hist(gold.usd.spikes$gold.spikes, breaks = 10, col= "green", xlim= 0+c(min4,max4), main="Frequency of Gold Dollar Spikes", xlab= "Gold in USD")
 
-# PyBuilder
-target/
+#Vector of Opec Values:
+opec.value = opec$Value
+
+#Vector of USD/RATE
+rub_rate = usd.rub$RATE
+cad_rate = usd.cad$RATE
+gold_value = gold.usd$Value
+
+library("dplyr")
+
+#Calculations:
+opec.oil.spikes = opec %>%
+  mutate(Value, oil.spikes = Value - lead(Value))
+
+usd.rub.spikes = usd.rub %>%
+  mutate(Value, rub.spikes = Value - lead(Value))
+
+usd.cad.spikes = usd.cad %>%
+  mutate(Value, cad.spikes = Value - lead(Value))
+  
+gold.usd.spikes  = gold.usd %>%  
+  mutate(Value, gold.spikes = Value - lead(Value))
+
+#Stored Mins and Maxs
+max2 = max(usd.rub.spikes$rub.spikes, na.rm=T)
+min2 =min(usd.rub.spikes$rub.spikes, na.rm=T)
+
+max3 = max(usd.cad.spikes$cad.spikes, na.rm=T)
+min3 = min(usd.cad.spikes$cad.spikes, na.rm=T)
+
+max4 = max(gold.usd.spikes$gold.spikes, na.rm=T)
+min4 = min(gold.usd.spikes$gold.spikes, na.rm=T)
+
+
+#Models:
+opec.rub.mod = lm(opec.oil.spikes$Value~usd.rub.spikes$Value)
+opec.rub.cad.mod = lm(opec.oil.spikes$Value~usd.rub.spikes$Value + usd.cad.spikes$Value)
+opec.rub.cad.gold.mod = lm(opec.oil.spikes$Value~usd.rub.spikes$Value+usd.cad.spikes$Value+gold.usd.spikes$Value)
+
+#Summary of the Models:
+summary(opec.rub.mod, confint= 0.95)
+summary(opec.rub.cad.mod, confint= 0.95)
+summary(opec.rub.cad.gold.mod, confint=0.95)
+
+#Computing Confint Levels - 95%:
+confint(opec.rub.mod, level=0.95)
+confint(opec.rub.cad.mod, level=0.95)
+confint(opec.rub.cad.gold.mod, level=0.95)
+
+
+#Multiple Model Plots - Residuals VS Fitted:
+plot(opec.rub.mod)
+plot(opec.rub.cad.mod)
+plot(opec.rub.cad.gold.mod)
+
+#Regression
+abline(opec.rub.mod)
+abline(opec.rub.cad.mod)
+abline(opec.rub.cad.gold.mod)
+
+#Comparison of the Models:
+anova(opec.rub.mod, opec.rub.cad.mod)
+anova(opec.rub.cad.mod, opec.rub.cad.gold.mod)
+
+#Means of the Data Sets:
+mean.opec = mean(opec.oil.spikes$Value, na.rm=T)
+mean.rub = mean(usd.rub.spikes$Value, na.rm=T)
+mean.cad = mean(usd.cad.spikes$Value, na.rm=T)
+mean.gold = mean(gold.usd.spikes$Value, na.rm=T)
+
+
+
+
