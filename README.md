@@ -3,23 +3,28 @@
 
 What variables drive spikes and dives in the price of crude oil? 
 	
-With a recent wide deflation of crude oil prices internationally and the price of crude oil hitting decade lows, the oil industry has become a contested area of speculation, and some analysts suggest that the price of oil may go as low as $20 per barrel. Historically this has not been the first time there have been sharp appreciation and depreciation of oil prices during the 1970’s the price of crude oil had doubled while in 1990’s the price of oil was halved. Understanding what drives these oil consumption trends and what variables affect the price of crude oil will help protect companies from such oil shocks. 
-The project itself will utilize data sourced from Quandl, a search engine for economic data. The data include the price of crude oil sold by OPEC, Organization of Petroleum Exporting Countries, USD to Rubles Exchange Rate, USD to Canadian Dollars Exchange Rate, and Gold in USD Value. The timeline will range from January 10th, 2010 to January 25th, 2016 and plotted based off weekly data. 
+	With a recent wide deflation of crude oil prices internationally and the price of crude oil hitting decade lows, the oil industry has become a contested area of speculation, and some analysts suggest that the price of oil may go as low as $20 per barrel. Historically this has not been the first time there have been sharp appreciation and depreciation of oil prices during the 1970’s the price of crude oil had doubled while in 1990’s the price of oil was halved. Understanding what drives these oil consumption trends and what variables affect the price of crude oil will help protect companies from such oil shocks. 
+	The project itself will utilize data sourced from Quandl, a search engine for economic data. The data include the price of crude oil sold by OPEC, Organization of Petroleum Exporting Countries, USD to Rubles Exchange Rate, USD to Canadian Dollars Exchange Rate, and Gold in USD Value. The timeline will range from January 10th, 2010 to January 25th, 2016 and plotted based off weekly data. 
 OPEC includes: Algeria, Angola, Ecuador, Iran, Iraq, Kuwait, Libya, Nigeria, Qatar, Saudi Arabia, United Arab Emirates and Venezuela. The OPEC’s database of crude oil prices is essential to this research. OPEC retains 80% of the world’s oil reserves with a majority of the reserves in the Middle East, amounting to around 66% of the OPEC total. The data was collected over several decades, but only recently uploaded online, and the data itself was collected by the economic cartel as all members must report their oil data. 
-U.S. crude oil exports/imports is also vital to this research. With a recent lift of a ban preventing oil companies on exporting crude oil to international markets, the importance of U.S. crude oil exportation has a serious impact on the international oil market and has affected how much oil the U.S. imports. In 2013, the U.S. oil industry has produced more crude oil than that of Russian and Saudi Arabian oil producers. The U.S. Energy Information Administration collected the dataset from Bureau of Labor Statistics on oil imports throughout the decades since 1920’s. 
+	U.S. crude oil exports/imports is also vital to this research. With a recent lift of a ban preventing oil companies on exporting crude oil to international markets, the importance of U.S. crude oil exportation has a serious impact on the international oil market and has affected how much oil the U.S. imports. In 2013, the U.S. oil industry has produced more crude oil than that of Russian and Saudi Arabian oil producers. The U.S. Energy Information Administration collected the dataset from Bureau of Labor Statistics on oil imports throughout the decades since 1920’s. 
 USD to Rubles Exchange Rate and USD to Canadian Dollars Exchange Rate showcase the exchange rate between US Dollars to Russian Rubles and Canadian Dollars. Currency data is important in this crude oil price analysis as it is well documented that currencies of countries with large oil exporting economies have closely related correlations with crude oil prices internationally. The Foreign Exchange Rate Database which is sourced from major banks and dealers, and offers synchronized FX rates for 168 currencies with history to 2000’s. 
 Gold priced in USD showcases the price of Gold in US Dollars. The relation Gold has on Crude Oil Prices is well documented. The overall relationship is well documented. Often times commodity investors spread there investments in other high valued commodities to neutralize the risk of investing in other commodities such as oil, which only now like the price of gold has fluctuated highly. 
-All the data will be plotted accordingly and a simple linear regression will be run on the data. A boxplot will be then calculated on the OPEC crude oil data to isolate various outliers. Outliers that lie within three to four standard deviations of the mean will than be labeled as an “oil shock.” The outlier data will than be paired with relevant news related events in order to determine a qualitative context of the oil market. All the data sets will also be exponentially smoothed too find a seasonal trend throughout the data sets and a correlation between the OPEC oil prices and USD and Ruble exchange rates. In addition, a correlation will be calculated for OPEC oil prices and U.S. exports/imports. A weighted, moving average of the monthly crude oil prices will be used to project future values and a probability of these outliers will be calculated and projected onto future values. The outcome variable is the OPEC crude oil prices. The main predictor variables are the USD/RUB exchange rates and US oil imports/exports. 
+	All the data will be plotted accordingly and a simple linear regression will be run on the data. A boxplot will be then calculated on the OPEC crude oil data to isolate various outliers. Outliers that lie within three to four standard deviations of the mean will than be labeled as an “oil shock.” The outlier data will than be paired with relevant news related events in order to determine a qualitative context of the oil market. All the data sets will also be exponentially smoothed too find a seasonal trend throughout the data sets and a correlation between the OPEC oil prices and USD and Ruble exchange rates. In addition, a correlation will be calculated for OPEC oil prices and U.S. exports/imports. A weighted, moving average of the monthly crude oil prices will be used to project future values and a probability of these outliers will be calculated and projected onto future values. The outcome variable is the OPEC crude oil prices. The main predictor variables are the USD/RUB exchange rates and US oil imports/exports. 
 Project 2:
 The objective of this project is to analyze three major data sets: USD to Rubles Exchange Rate, and the U.S crude oil production, in relation to crude oil prices. A correlation and regression analysis will be conducted on these data with the crude oil prices. The purpose for these analyses is to find data sets that accurately and precisely indicate the general trend in oil prices. 
 
 Figure A:
+* Run R Code to view
 
 Figure B:
+* Run R Code to view
 
 Figure C:
+* Run R Code to view
 
 Figure D:
+* Run R Code to view
+
 
 The graph in Figure A showcases crude oil prices from 2010 to the year 2014. There is a clear incline in the year 2011, which is during the Arab Spring with the revolutions in Syria, Libya, and Egypt which both countries are major crude oil exporters. In the year 2012, there is also a large crude oil spike in 2012, which during disintegration of Syria and Egypt. 
 Figure E: OPEC and USD/RUB Data
@@ -47,33 +52,31 @@ The graph in Figure B and C showcase USD and Ruble exchange rates. The correlati
 The graph in Figure D showcases the price of gold in U.S. dollars The correlation between the data is 0.6539211, which illustrates a significant moderate positive correlation between the price of oil and gold. 
 	
 
-	Figure 1:
+Figure 1:
+* Run R Code to view
 
-	Figure 2:
+Figure 2:
+* Run R Code to view
 
-  Figure 3:
+Figure 3:
+* Run R Code to view
 
-	Figure 4:
+Figure 4:
+* Run R Code to view
+
 
 	A variable called spikes was calculated by subtracting the current rate or price minus the previous rate or price. The histograms show the distribution of spikes in prices, which often coincide with each other. 
-	Figure 1a:
 
-	Figure 1b:
+Figure 1a:
+* Run R Code to view
 
-	
-
-
+Figure 1b:
+* Run R Code to view
 
 Figure 1c:
+* Run R Code to view
 
 I would like to implement a weighted, moving average along all the months in order to project them unto future values. The weighted moving average will take in account of the seasonality and cyclical nature of the crude oil prices. In addition, I would like to assign weights to several of the factor variables of USD and Ruble Exchange Rates and USD and Canadian Dollar Exchange Rates and Gold in US dollars based on the correlation level associated with Crude Oil Prices. A weighted, moving average predictor will take these variables and weights into account in order to predict better future values of crude oil prices. 
-
-
-
-
-
-
-
 
 Bibliography:
 
@@ -102,8 +105,6 @@ https://www.quandl.com/data/CUR/CAD-Currency-Exchange-Rates-USD-CAD
 
 Gold in USD:
 https://www.quandl.com/data/BUNDESBANK/BBK01_WT5511-Gold-Price-USD
-
-
 
 Other References:
 
